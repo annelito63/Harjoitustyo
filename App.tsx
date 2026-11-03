@@ -6,16 +6,21 @@ import Tervetuloa from './Tervetuloa';
 import Tallennus from './Tallennus';
 import Lista from './Lista';
 import Kartta from './Kartta';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Tervetuloa" component={Tervetuloa} />
+        <Stack.Screen name="Tallennus" component={Tallennus} />
+        <Stack.Screen name="Lista" component={Lista} />
+        <Stack.Screen name="Kartta" component={Kartta} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

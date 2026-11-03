@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Card, Text, } from 'react-native-paper';
-import type { RootStackParamList, RootStackScreenProps } from './types'
 import { useState, useEffect } from 'react';
 import { getDatabase, push, ref, onValue } from 'firebase/database';
 import { app } from './firebaseConfig';

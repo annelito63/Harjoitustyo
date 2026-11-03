@@ -1,12 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Card, Text, } from 'react-native-paper';
+import { Button, Card, Text, TextInput, } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import { getDatabase, push, ref, onValue } from 'firebase/database';
 import { app } from './firebaseConfig';
-
-export default function Lista() {
 
     const database = getDatabase(app);
 
@@ -17,7 +15,12 @@ export default function Lista() {
         pvm: string;
         kuvaus: string;
     }
+
+export default function Lista() {
+
+
     const [havainnot, setHavainnot] = useState<Havainto[]>([]);
+    const [pvm, setPvm] = useState("");
 
     useEffect(() => {
         return onValue(ref(database, 'items/'), (snapshot) => {
@@ -37,6 +40,16 @@ export default function Lista() {
                 <Text>
                     Havaintosi
                 </Text>
+                <TextInput
+                    style={{ width: '90%', marginBottom: 10 }}
+                    placeholder="Päivämäärä"
+                    label="Päivämäärä"
+                    value={pvm}
+                    onChangeText={text => setPvm(text)}
+                /> 
+                <Button mode="contained" >
+                    Etsi päivämäärällä
+                </Button>
                 <FlatList
                     style={{ marginTop: 10, width: '90%' }}
                     data={havainnot}

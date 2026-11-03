@@ -53,20 +53,22 @@ export default function Tallennus() {
                     label="Paikka"
                     value={havainto.paikka}
                     onChangeText={text => setHavainto({ ...havainto, paikka: text })}
-                /> <TextInput
+                /> 
+                <TextInput
                     style={{ width: '90%', marginBottom: 10 }}
                     placeholder="Päivämäärä"
                     label="Päivämäärä"
                     value={havainto.pvm}
                     onChangeText={text => setHavainto({ ...havainto, pvm: text })}
-                /> <TextInput
+                /> 
+                <TextInput
                     style={{ width: '90%', marginBottom: 10 }}
                     placeholder="Kuvaus"
                     label="Kuvaus"
                     value={havainto.kuvaus}
                     onChangeText={text => setHavainto({ ...havainto, kuvaus: text })}
                 />
-                <Button mode="contained" icon="content-save">
+                <Button mode="contained" icon="content-save" onPress={() => handleSave}>
                     Tallenna
                 </Button>
                 <StatusBar style="auto" />

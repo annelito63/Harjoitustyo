@@ -1,5 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import type { RootStackParamList } from './types'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Tervetuloa from './Tervetuloa';
+import Tallennus from './Tallennus';
+import Lista from './Lista';
+import Kartta from './Kartta';
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
 
 export default function App() {
   return (

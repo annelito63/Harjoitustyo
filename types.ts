@@ -4,7 +4,7 @@ export type RootStackParamList = {
     Tervetuloa: undefined;
     Tallennus: undefined;
     Lista: /* {
-        id: number;
+        
         laji: string;
         paikka: string;
         pvm: string;

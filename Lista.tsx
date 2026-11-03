@@ -3,8 +3,35 @@ import { StyleSheet, FlatList } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Card, Text, } from 'react-native-paper';
 import type { RootStackParamList, RootStackScreenProps } from './types'
+import { useState, useEffect } from 'react';
+import { getDatabase, push, ref, onValue } from 'firebase/database';
+import { app } from './firebaseConfig';
 
 export default function Lista() {
+
+    const database = getDatabase(app);
+
+    type Havainto = {
+        id: number;
+        laji: string;
+        paikka: string;
+        pvm: string;
+        kuvaus: string;
+    }
+    const [havainnot, setHavainnot] = useState<Havainto[]>([]);
+
+    useEffect(() => {
+        return onValue(ref(database, 'items/'), (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                setHavainnot(Object.values(data) as Havainto[]);
+            } else {
+                setHavainnot([]);
+            }
+        });
+    }, []);
+
+
     return (
         <SafeAreaProvider>
             <SafeAreaView>

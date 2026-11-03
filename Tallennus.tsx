@@ -1,18 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, } from 'react-native';
+import { Alert, StyleSheet, } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import type { RootStackParamList } from './types'
 import { app } from './firebaseConfig';
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, push } from "firebase/database";
 
 const database = getDatabase(app);
 
 
 
 type Havainto = {
-    id: number;
     laji: string;
     paikka: string;
     pvm: string;
@@ -21,20 +20,23 @@ type Havainto = {
 
 export default function Tallennus() {
 
-    const [havainnot, setHavainnot] = useState<Havainto[]>([]);
-
-    /*  const [laji, setLaji] = useState('');
-     const [paikka, setPaikka] = useState('');
-     const [pvm, setPvm] = useState('');
-     const [kuvaus, setKuvaus] = useState(''); */
+    
     const [havainto, setHavainto] = useState<Havainto>({
-        id: havainnot.length + 1,
         laji: '',
         paikka: '',
         pvm: '',
         kuvaus: ''
     });
 
+
+    const handleSave = () => {
+        if (havainto.laji && havainto.paikka && havainto.pvm) {
+            push(ref(database, 'items/'), havainto);
+        }
+        else {
+            Alert.alert('Error', 'Anna laji, paikka ja päivämäärä!');
+        }
+    }
 
     return (
         <SafeAreaProvider>

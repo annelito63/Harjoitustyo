@@ -8,26 +8,30 @@ import { RootStackScreenProps } from './types';
 
 export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
 
-    /*  const [region, setRegion] = useState({
-         latitude: 60.200692,
-         longitude: 24.934302,
-         latitudeDelta: 0.0322,
-         longitudeDelta: 0.0221,
-     })
- 
-     const [location, setLocation] = useState(null);
- 
-     useEffect(() => {
-         (async () => {
-             let { status } = await Location.requestForegroundPermissionsAsync();
-             if (status !== 'granted') {
-                 Alert.alert('No permission to get location')
-                 return;
-             }
-             let location = await Location.getCurrentPositionAsync({});
-             setLocation(location);
-         })();
-     }, []); */
+
+    const [location, setLocation] = useState<Location.LocationObject | null>(null);
+
+    const spot = (async () => {
+        await Location.getCurrentPositionAsync({});
+        setLocation(location)
+    });
+
+    useEffect(() => {
+        (async () => {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                Alert.alert('No permission to get location')
+                return;
+            }
+            const location = await Location.getCurrentPositionAsync({});
+            setRegion({
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.0322,
+                longitudeDelta: 0.0221,
+            });
+        })();
+    }, []);
 
     const [lat, setLat] = useState(60.200692);
     const [lon, setLon] = useState(24.934302);
@@ -71,14 +75,17 @@ export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
                     style={{ width: '100%', height: '100%' }}
                     region={region}
 
-                />
-                <Marker
-                    coordinate={{
-                        latitude: 60.201373,
-                        longitude: 24.934041
-                    }}
-                    title='Olet tässä'
-                />
+                >
+                    {location && (
+                        <Marker
+                            coordinate={{
+                                latitude: location.coords.latitude,
+                                longitude: location.coords.longitude
+                            }}
+                            title='Olet tässä'
+                        />
+                    )}
+                </MapView>
                 <StatusBar style="auto" />
             </SafeAreaView>
         </SafeAreaProvider>

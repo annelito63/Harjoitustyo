@@ -86,7 +86,7 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
                         <StatusBar style="auto" />
                         <Button
                             mode='contained'
-                            icon="fomat-list-bulleted"
+                            icon="format-list-bulleted"
                             onPress={() => navigation.navigate('Lista')}
                         >
                             Havaintosi

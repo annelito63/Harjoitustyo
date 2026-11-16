@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import type { RootStackScreenProps } from './types'
-import { Button, PaperProvider, Icon } from 'react-native-paper';
+import { Button, PaperProvider, } from 'react-native-paper';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
@@ -21,7 +21,7 @@ export default function Tervetuloa({ navigation }: RootStackScreenProps<'Tervetu
                         </Button>
                         <Button
                             mode='contained'
-                            icon="fomat-list-bulleted"
+                            icon="format-list-bulleted"
                             onPress={() => navigation.navigate('Lista')}
                         >
                             Havaintosi

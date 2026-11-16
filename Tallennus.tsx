@@ -2,9 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { Alert, StyleSheet, } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
-import { Button, TextInput } from 'react-native-paper';
+import { Button, PaperProvider, TextInput } from 'react-native-paper';
 import { app } from './firebaseConfig';
 import { getDatabase, ref, push } from "firebase/database";
+import { RootStackScreenProps } from './types';
+
 
 const database = getDatabase(app);
 
@@ -17,9 +19,9 @@ type Havainto = {
     kuvaus: string;
 }
 
-export default function Tallennus() {
+export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennus'>) {
 
-    
+
     const [havainto, setHavainto] = useState<Havainto>({
         laji: '',
         paikka: '',
@@ -31,13 +33,22 @@ export default function Tallennus() {
     const handleSave = () => {
         if (havainto.laji && havainto.paikka && havainto.pvm) {
             push(ref(database, 'items/'), havainto);
+
+            setHavainto({
+                laji: '',
+                paikka: '',
+                pvm: '',
+                kuvaus: ''
+            });
         }
         else {
             Alert.alert('Error', 'Anna laji, paikka ja päivämäärä!');
         }
+
     }
 
     return (
+        <PaperProvider>
         <SafeAreaProvider>
             <SafeAreaView>
                 <TextInput
@@ -53,14 +64,14 @@ export default function Tallennus() {
                     label="Paikka"
                     value={havainto.paikka}
                     onChangeText={text => setHavainto({ ...havainto, paikka: text })}
-                /> 
+                />
                 <TextInput
                     style={{ width: '90%', marginBottom: 10 }}
                     placeholder="Päivämäärä"
                     label="Päivämäärä"
                     value={havainto.pvm}
                     onChangeText={text => setHavainto({ ...havainto, pvm: text })}
-                /> 
+                />
                 <TextInput
                     style={{ width: '90%', marginBottom: 10 }}
                     placeholder="Kuvaus"
@@ -68,7 +79,7 @@ export default function Tallennus() {
                     value={havainto.kuvaus}
                     onChangeText={text => setHavainto({ ...havainto, kuvaus: text })}
                 />
-                <Button mode="contained" icon="content-save" onPress={() => handleSave}>
+                <Button mode="contained" icon="content-save" onPress={handleSave}>
                     Tallenna
                 </Button>
                 <StatusBar style="auto" />
@@ -86,6 +97,7 @@ export default function Tallennus() {
                 </Button>
             </SafeAreaView>
         </SafeAreaProvider>
+        </PaperProvider>
     );
 }
 

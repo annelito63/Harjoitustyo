@@ -1,33 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import type { RootStackScreenProps } from './types'
-import { Button } from 'react-native-paper';
+import { Button, PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function Tervetuloa({ navigation }: RootStackScreenProps<'Tervetuloa'>) {
     return (
-        <View style={styles.container}>
-            <Text>Tervetuloa tallentamaan havaintosi!</Text>
-            <Button
-                mode='contained'
-                onPress={() => navigation.navigate('Tallennus')}
-            >
-                Tallennus
-            </Button>
-            <Button
-                mode='contained'
-                onPress={() => navigation.navigate('Lista')}
-            >
-                Havaintosi
-            </Button>
-                        <Button
-                mode='contained'
-                onPress={() => navigation.navigate('Kartta')}
-            >
-                Kartta
-            </Button>
-            <StatusBar style="auto" />
-        </View>
+        <PaperProvider>
+            <SafeAreaProvider>
+                <SafeAreaView style={styles.container}>
+                    <Text>Tervetuloa tallentamaan havaintosi!</Text>
+                    <Button
+                        mode='contained'
+                        onPress={() => navigation.navigate('Tallennus')}
+                    >
+                        Tallennus
+                    </Button>
+                    <Button
+                        mode='contained'
+                        onPress={() => navigation.navigate('Lista')}
+                    >
+                        Havaintosi
+                    </Button>
+                    <Button
+                        mode='contained'
+                        onPress={() => navigation.navigate('Kartta')}
+                    >
+                        Kartta
+                    </Button>
+                    <StatusBar style="auto" />
+                </SafeAreaView>
+            </SafeAreaProvider>
+        </PaperProvider>
+
     );
 }
 

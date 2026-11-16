@@ -4,8 +4,9 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker } from 'react-native-maps';
 import { useState, useEffect, } from 'react';
 import * as Location from 'expo-location';
+import { RootStackScreenProps } from './types';
 
-export default function Kartta() {
+export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
 
     /*  const [region, setRegion] = useState({
          latitude: 60.200692,

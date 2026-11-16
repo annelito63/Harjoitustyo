@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import type { RootStackScreenProps } from './types'
-import { Button, PaperProvider } from 'react-native-paper';
+import { Button, PaperProvider, Icon } from 'react-native-paper';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 
@@ -14,18 +14,21 @@ export default function Tervetuloa({ navigation }: RootStackScreenProps<'Tervetu
                     <View style={styles.buttons}>
                         <Button
                             mode='contained'
+                            icon="content-save"
                             onPress={() => navigation.navigate('Tallennus')}
                         >
                             Tallennus
                         </Button>
                         <Button
                             mode='contained'
+                            icon="fomat-list-bulleted"
                             onPress={() => navigation.navigate('Lista')}
                         >
                             Havaintosi
                         </Button>
                         <Button
                             mode='contained'
+                            icon="map-marker"
                             onPress={() => navigation.navigate('Kartta')}
                         >
                             Kartta

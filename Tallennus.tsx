@@ -86,12 +86,14 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
                         <StatusBar style="auto" />
                         <Button
                             mode='contained'
+                            icon="fomat-list-bulleted"
                             onPress={() => navigation.navigate('Lista')}
                         >
                             Havaintosi
                         </Button>
                         <Button
                             mode='contained'
+                            icon="map-marker"
                             onPress={() => navigation.navigate('Kartta')}
                         >
                             Kartta

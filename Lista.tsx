@@ -68,10 +68,10 @@ export default function Lista({ route }: RootStackScreenProps<'Lista'>) {
                         onChangeText={text => setPvm(text)}
                     />
                     <View style={styles.buttons} >
-                        <Button mode="contained" onPress={haePvmlla}  >
+                        <Button mode="contained" icon="calendar-blank" onPress={haePvmlla}  >
                             Etsi päivämäärällä
                         </Button>
-                        <Button mode="contained" onPress={haeLajit}  >
+                        <Button mode="contained" icon="bird" onPress={haeLajit}  >
                             Etsi lajit
                         </Button>
                     </View>

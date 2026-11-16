@@ -11,24 +11,26 @@ export default function Tervetuloa({ navigation }: RootStackScreenProps<'Tervetu
             <SafeAreaProvider>
                 <SafeAreaView style={styles.container}>
                     <Text>Tervetuloa tallentamaan havaintosi!</Text>
-                    <Button
-                        mode='contained'
-                        onPress={() => navigation.navigate('Tallennus')}
-                    >
-                        Tallennus
-                    </Button>
-                    <Button
-                        mode='contained'
-                        onPress={() => navigation.navigate('Lista')}
-                    >
-                        Havaintosi
-                    </Button>
-                    <Button
-                        mode='contained'
-                        onPress={() => navigation.navigate('Kartta')}
-                    >
-                        Kartta
-                    </Button>
+                    <View style={styles.buttons}>
+                        <Button
+                            mode='contained'
+                            onPress={() => navigation.navigate('Tallennus')}
+                        >
+                            Tallennus
+                        </Button>
+                        <Button
+                            mode='contained'
+                            onPress={() => navigation.navigate('Lista')}
+                        >
+                            Havaintosi
+                        </Button>
+                        <Button
+                            mode='contained'
+                            onPress={() => navigation.navigate('Kartta')}
+                        >
+                            Kartta
+                        </Button>
+                    </View>
                     <StatusBar style="auto" />
                 </SafeAreaView>
             </SafeAreaProvider>
@@ -43,5 +45,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    buttons: {
+        paddingTop: 20
     },
 });

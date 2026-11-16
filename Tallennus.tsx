@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, } from 'react-native';
+import { Alert, StyleSheet, View, } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { Button, PaperProvider, TextInput } from 'react-native-paper';
@@ -49,54 +49,56 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
 
     return (
         <PaperProvider>
-        <SafeAreaProvider>
-            <SafeAreaView>
-                <TextInput
-                    style={{ width: '90%', marginBottom: 10 }}
-                    placeholder="Laji"
-                    label="Laji"
-                    value={havainto.laji}
-                    onChangeText={text => setHavainto({ ...havainto, laji: text })}
-                />
-                <TextInput
-                    style={{ width: '90%', marginBottom: 10 }}
-                    placeholder="Paikka"
-                    label="Paikka"
-                    value={havainto.paikka}
-                    onChangeText={text => setHavainto({ ...havainto, paikka: text })}
-                />
-                <TextInput
-                    style={{ width: '90%', marginBottom: 10 }}
-                    placeholder="Päivämäärä"
-                    label="Päivämäärä"
-                    value={havainto.pvm}
-                    onChangeText={text => setHavainto({ ...havainto, pvm: text })}
-                />
-                <TextInput
-                    style={{ width: '90%', marginBottom: 10 }}
-                    placeholder="Kuvaus"
-                    label="Kuvaus"
-                    value={havainto.kuvaus}
-                    onChangeText={text => setHavainto({ ...havainto, kuvaus: text })}
-                />
-                <Button mode="contained" icon="content-save" onPress={handleSave}>
-                    Tallenna
-                </Button>
-                <StatusBar style="auto" />
-                <Button
-                    mode='contained'
-                    onPress={() => navigation.navigate('Lista')}
-                >
-                    Havaintosi
-                </Button>
-                <Button
-                    mode='contained'
-                    onPress={() => navigation.navigate('Kartta')}
-                >
-                    Kartta
-                </Button>
-            </SafeAreaView>
-        </SafeAreaProvider>
+            <SafeAreaProvider>
+                <SafeAreaView>
+                    <TextInput
+                        style={{ width: '90%', marginBottom: 10 }}
+                        placeholder="Laji"
+                        label="Laji"
+                        value={havainto.laji}
+                        onChangeText={text => setHavainto({ ...havainto, laji: text })}
+                    />
+                    <TextInput
+                        style={{ width: '90%', marginBottom: 10 }}
+                        placeholder="Paikka"
+                        label="Paikka"
+                        value={havainto.paikka}
+                        onChangeText={text => setHavainto({ ...havainto, paikka: text })}
+                    />
+                    <TextInput
+                        style={{ width: '90%', marginBottom: 10 }}
+                        placeholder="Päivämäärä"
+                        label="Päivämäärä"
+                        value={havainto.pvm}
+                        onChangeText={text => setHavainto({ ...havainto, pvm: text })}
+                    />
+                    <TextInput
+                        style={{ width: '90%', marginBottom: 10 }}
+                        placeholder="Kuvaus"
+                        label="Kuvaus"
+                        value={havainto.kuvaus}
+                        onChangeText={text => setHavainto({ ...havainto, kuvaus: text })}
+                    />
+                    <View style={styles.buttons}>
+                        <Button mode="contained" icon="content-save" onPress={handleSave}>
+                            Tallenna
+                        </Button>
+                        <StatusBar style="auto" />
+                        <Button
+                            mode='contained'
+                            onPress={() => navigation.navigate('Lista')}
+                        >
+                            Havaintosi
+                        </Button>
+                        <Button
+                            mode='contained'
+                            onPress={() => navigation.navigate('Kartta')}
+                        >
+                            Kartta
+                        </Button>
+                    </View>
+                </SafeAreaView>
+            </SafeAreaProvider>
         </PaperProvider>
     );
 }
@@ -107,5 +109,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    buttons: {
+        paddingTop: 20
     },
 });

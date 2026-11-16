@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList, View, } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Button, Card, Text, TextInput, List, PaperProvider, } from 'react-native-paper';
 import { useState, useEffect } from 'react';
@@ -67,12 +67,14 @@ export default function Lista({ route }: RootStackScreenProps<'Lista'>) {
                         value={pvm}
                         onChangeText={text => setPvm(text)}
                     />
-                    <Button mode="contained" onPress={haePvmlla} style={styles.buttons} >
-                        Etsi päivämäärällä
-                    </Button>
-                    <Button mode="contained" onPress={haeLajit} style={styles.buttons} >
-                        Etsi lajit
-                    </Button>
+                    <View style={styles.buttons} >
+                        <Button mode="contained" onPress={haePvmlla}  >
+                            Etsi päivämäärällä
+                        </Button>
+                        <Button mode="contained" onPress={haeLajit}  >
+                            Etsi lajit
+                        </Button>
+                    </View>
                     {suodatetut.length > 0 &&
                         <FlatList
                             style={{ marginTop: 10, width: '90%' }}

@@ -107,7 +107,7 @@ export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
                         {havaintoPaikka && (
                             <Marker
                                 coordinate={havaintoPaikka}
-                                title="Tallennettu havainto"
+                                title="Tallennettu paikka"
                                 pinColor="red"
                             />
                         )}

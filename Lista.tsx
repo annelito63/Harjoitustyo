@@ -3,9 +3,11 @@ import { StyleSheet, FlatList, View, } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Button, Card, Text, TextInput, List, PaperProvider, } from 'react-native-paper';
 import { useState, useEffect } from 'react';
-import { getDatabase, push, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, query, orderByChild, equalTo, } from 'firebase/database';
 import { app } from './firebaseConfig';
 import { RootStackScreenProps } from './types';
+import { getAuth } from 'firebase/auth';
+
 
 const database = getDatabase(app);
 
@@ -15,6 +17,7 @@ type Havainto = {
     paikka: string;
     pvm: string;
     kuvaus: string;
+    uid?: string;
 }
 
 export default function Lista({ route }: RootStackScreenProps<'Lista'>) {
@@ -25,9 +28,22 @@ export default function Lista({ route }: RootStackScreenProps<'Lista'>) {
     const [suodatetut, setSuodatetut] = useState<Havainto[]>([]);
     const [lajit, setLajit] = useState<string[]>([]);
 
+
     useEffect(() => {
-        return onValue(ref(database, 'items/'), (snapshot) => {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
+
+        if (!currentUser) return;
+
+        const q = query(
+            ref(database, 'items'),
+            orderByChild('uid'),
+            equalTo(currentUser.uid)
+        );
+
+        return onValue(q, (snapshot) => {
             const data = snapshot.val();
+
             if (data) {
                 setHavainnot(Object.values(data) as Havainto[]);
             } else {

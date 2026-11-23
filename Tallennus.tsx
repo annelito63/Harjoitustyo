@@ -6,6 +6,7 @@ import { Button, PaperProvider, TextInput } from 'react-native-paper';
 import { app } from './firebaseConfig';
 import { getDatabase, ref, push } from "firebase/database";
 import { RootStackScreenProps } from './types';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 
 const database = getDatabase(app);
@@ -17,10 +18,12 @@ type Havainto = {
     paikka: string;
     pvm: string;
     kuvaus: string;
+    uid?: string;
 }
 
 export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennus'>) {
-
+    const auth = getAuth();
+    const user = auth.currentUser;
 
     const [havainto, setHavainto] = useState<Havainto>({
         laji: '',
@@ -32,8 +35,10 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
 
     const handleSave = () => {
         if (havainto.laji && havainto.paikka && havainto.pvm) {
-            push(ref(database, 'items/'), havainto);
-
+            push(ref(database, 'items/'), {
+                ...havainto,
+                uid: user?.uid
+            });
             setHavainto({
                 laji: '',
                 paikka: '',
@@ -46,6 +51,8 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
         }
 
     }
+
+
 
     return (
         <PaperProvider>
@@ -80,14 +87,21 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
                         onChangeText={text => setHavainto({ ...havainto, kuvaus: text })}
                     />
                     <View style={styles.buttons}>
-                        <Button mode="contained" icon="content-save" onPress={handleSave}>
+                        <Button
+                            mode="contained"
+                            icon="content-save"
+                            onPress={handleSave}
+                            style={styles.button}
+                        >
+
                             Tallenna
                         </Button>
-                        <StatusBar style="auto" />
+
                         <Button
                             mode='contained'
                             icon="format-list-bulleted"
                             onPress={() => navigation.navigate('Lista')}
+                            style={styles.button}
                         >
                             Havaintosi
                         </Button>
@@ -95,9 +109,11 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
                             mode='contained'
                             icon="map-marker"
                             onPress={() => navigation.navigate('Kartta')}
+                            style={styles.button}
                         >
                             Kartta
                         </Button>
+                        <StatusBar style="auto" />
                     </View>
                 </SafeAreaView>
             </SafeAreaProvider>
@@ -114,5 +130,8 @@ const styles = StyleSheet.create({
     },
     buttons: {
         paddingTop: 20
+    },
+    button: {
+        marginTop: 20
     },
 });

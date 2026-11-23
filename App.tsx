@@ -7,6 +7,7 @@ import Tallennus from './Tallennus';
 import Lista from './Lista';
 import Kartta from './Kartta';
 import { NavigationContainer } from '@react-navigation/native';
+import Kirjautuminen from './Kirjautuminen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Kirjautuminen" component={Kirjautuminen} />
         <Stack.Screen name="Tervetuloa" component={Tervetuloa} />
         <Stack.Screen name="Tallennus" component={Tallennus} />
         <Stack.Screen name="Lista" component={Lista} />

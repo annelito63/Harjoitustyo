@@ -6,7 +6,7 @@ import { Button, PaperProvider, TextInput } from 'react-native-paper';
 import { app } from './firebaseConfig';
 import { getDatabase, ref, push } from "firebase/database";
 import { RootStackScreenProps } from './types';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, } from 'firebase/auth';
 
 
 const database = getDatabase(app);

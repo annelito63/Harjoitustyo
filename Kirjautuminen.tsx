@@ -3,10 +3,8 @@ import { StyleSheet, Text, View, } from 'react-native';
 import type { RootStackScreenProps } from './types'
 import { Button, PaperProvider, TextInput } from 'react-native-paper';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { getDatabase, ref, push } from "firebase/database";
 import { app } from './firebaseConfig';
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { initializeApp } from 'firebase/app';
 import { useState } from 'react';
 
 

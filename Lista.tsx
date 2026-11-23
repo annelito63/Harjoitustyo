@@ -73,21 +73,20 @@ export default function Lista({ route }: RootStackScreenProps<'Lista'>) {
         <PaperProvider>
             <SafeAreaProvider>
                 <SafeAreaView>
-                    <Text>
-                        Havaintosi
-                    </Text>
+                    <View >
                     <TextInput
-                        style={{ width: '90%', marginBottom: 10 }}
+                        style={styles.input}
                         placeholder="Päivämäärä"
                         label="Päivämäärä"
                         value={pvm}
                         onChangeText={text => setPvm(text)}
                     />
+                    </View>
                     <View style={styles.buttons} >
-                        <Button mode="contained" icon="calendar-blank" onPress={haePvmlla}  >
+                        <Button mode="contained" icon="calendar-blank" onPress={haePvmlla} style={styles.button}  >
                             Etsi päivämäärällä
                         </Button>
-                        <Button mode="contained" icon="bird" onPress={haeLajit}  >
+                        <Button mode="contained" icon="bird" onPress={haeLajit} style={styles.button} >
                             Etsi lajit
                         </Button>
                     </View>
@@ -131,5 +130,16 @@ const styles = StyleSheet.create({
     },
     buttons: {
         paddingTop: 20
+    },
+     button: {
+        marginTop: 20,
+        marginRight: 20,
+        marginLeft: 20
+    },
+        input: {
+        alignItems: 'center',
+        marginTop: 20,
+        marginLeft: 20,
+        marginRight: 20
     },
 });

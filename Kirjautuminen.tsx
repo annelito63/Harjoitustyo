@@ -60,9 +60,14 @@ export default function Kirjautuminen({ navigation }: RootStackScreenProps<'Kirj
             <SafeAreaProvider>
                 <SafeAreaView style={styles.container}>
                     {
+                        user && (
+                            <Text style={styles.text}>Olet kirjautunut sisään!</Text>
+                        )
+                    }
+                    {
                         !user && (
-                            <View>
-                                <Text>Kirjaudu sisään</Text>
+                            <View style={styles.input}>
+
                                 <TextInput
                                     style={{ width: '90%', marginBottom: 10 }}
                                     placeholder="Sähköposti"
@@ -105,11 +110,7 @@ export default function Kirjautuminen({ navigation }: RootStackScreenProps<'Kirj
                         )
                     }
 
-                    {
-                        user && (
-                            <Text>Olet kirjautunut sisään!</Text>
-                        )
-                    }
+
 
                     <StatusBar style="auto" />
                 </SafeAreaView>
@@ -125,6 +126,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    input: {
+        flex:1,
+        alignItems: 'center',
+        width: 300,
+        marginTop: 20
     },
     buttons: {
         paddingTop: 20

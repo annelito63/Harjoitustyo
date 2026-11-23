@@ -58,34 +58,36 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
         <PaperProvider>
             <SafeAreaProvider>
                 <SafeAreaView>
-                    <TextInput
-                        style={{ width: '90%', marginBottom: 10 }}
-                        placeholder="Laji"
-                        label="Laji"
-                        value={havainto.laji}
-                        onChangeText={text => setHavainto({ ...havainto, laji: text })}
-                    />
-                    <TextInput
-                        style={{ width: '90%', marginBottom: 10 }}
-                        placeholder="Paikka"
-                        label="Paikka"
-                        value={havainto.paikka}
-                        onChangeText={text => setHavainto({ ...havainto, paikka: text })}
-                    />
-                    <TextInput
-                        style={{ width: '90%', marginBottom: 10 }}
-                        placeholder="Päivämäärä"
-                        label="Päivämäärä"
-                        value={havainto.pvm}
-                        onChangeText={text => setHavainto({ ...havainto, pvm: text })}
-                    />
-                    <TextInput
-                        style={{ width: '90%', marginBottom: 10 }}
-                        placeholder="Kuvaus"
-                        label="Kuvaus"
-                        value={havainto.kuvaus}
-                        onChangeText={text => setHavainto({ ...havainto, kuvaus: text })}
-                    />
+                    <View style={styles.input}>
+                        <TextInput
+                            style={{ width: '90%', marginBottom: 10 }}
+                            placeholder="Laji"
+                            label="Laji"
+                            value={havainto.laji}
+                            onChangeText={text => setHavainto({ ...havainto, laji: text })}
+                        />
+                        <TextInput
+                            style={{ width: '90%', marginBottom: 10 }}
+                            placeholder="Paikka"
+                            label="Paikka"
+                            value={havainto.paikka}
+                            onChangeText={text => setHavainto({ ...havainto, paikka: text })}
+                        />
+                        <TextInput
+                            style={{ width: '90%', marginBottom: 10 }}
+                            placeholder="Päivämäärä"
+                            label="Päivämäärä"
+                            value={havainto.pvm}
+                            onChangeText={text => setHavainto({ ...havainto, pvm: text })}
+                        />
+                        <TextInput
+                            style={{ width: '90%', marginBottom: 10 }}
+                            placeholder="Kuvaus"
+                            label="Kuvaus"
+                            value={havainto.kuvaus}
+                            onChangeText={text => setHavainto({ ...havainto, kuvaus: text })}
+                        />
+                    </View>
                     <View style={styles.buttons}>
                         <Button
                             mode="contained"
@@ -132,6 +134,13 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     button: {
+        marginTop: 20,
+        marginRight: 20,
+        marginLeft: 20
+    },
+    input: {
+        flex: 1,
+        alignItems: 'center',
         marginTop: 20
     },
 });

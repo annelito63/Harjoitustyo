@@ -127,7 +127,6 @@ const styles = StyleSheet.create({
     },
     input: {
         flex:1,
-        alignItems: 'center',
         width: 300,
         marginTop: 20
     },

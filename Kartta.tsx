@@ -63,15 +63,7 @@ export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
     })
     const [place, setPlace] = useState("");
 
-    const [paikat, setPaikat] = useState<
-        {
-            id: string;
-            nimi: string;
-            latitude: number;
-            longitude: number;
-            uid: string;
-        }[]
-    >([]);
+    const [paikat, setPaikat] = useState<Paikka[]>([]);
 
     const findPlace = () => {
         fetch(`https://geocode.maps.co/search?q=${place}&api_key=6ab28ca9135d7862906985pbce48604`)
@@ -148,19 +140,9 @@ export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
             const data = snapshot.val();
 
             if (data) {
-                const paikatLista = Object.entries(data).map(([id, value]) => ({
-                    id,
-                    ...(value as {
-                        nimi: string;
-                        latitude: number;
-                        longitude: number;
-                        uid: string;
-                    }),
-                }));
-                setPaikat(paikatLista);
+                setPaikat(Object.values(data) as Paikka[]);
             } else {
                 setPaikat([]);
-                return;
             }
 
         });
@@ -186,9 +168,9 @@ export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
                             pinColor="blue"
                         />
                     )}
-                    {paikat.map((paikka) => (
+                    {paikat.map((paikka, index) => (
                         <Marker
-                            key={paikka.id}
+                            key={index}
                             coordinate={{
                                 latitude: paikka.latitude,
                                 longitude: paikka.longitude,

@@ -137,7 +137,6 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     input: {
-        alignItems: 'center',
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20

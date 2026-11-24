@@ -1,0 +1,8 @@
+- React Native framework ja Expo sovelluksen luomiseen
+- UI-kirjastona käytetty React Native Paperia
+- Tietokantana Firebase 
+- Autentikoinnissa käytetty Firebasen omaa autentikointia
+- Kartassa käytetty React Native Maps, oletuksena Apple Maps
+- Navigaationa käytetty Stack navigation
+- Listaamiseen käytetty flatlist numeroinnilla ja card
+- Modal tekstikentän näyttämiseen

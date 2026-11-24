@@ -92,14 +92,14 @@ export default function Lista({ route }: RootStackScreenProps<'Lista'>) {
                     </View>
                     {suodatetut.length > 0 &&
                         <FlatList
-                            style={{ marginTop: 10, width: '90%' }}
+                            style={styles.card}
                             data={suodatetut}
                             renderItem={({ item }) =>
                                 <Card style={{ marginBottom: 10 }}>
                                     <Card.Title title={item.laji} />
                                     <Card.Content>
-                                        <Text variant="bodyMedium">{item.paikka}</Text>
-                                        <Text variant="bodyMedium">{item.kuvaus}</Text>
+                                        <Text variant="bodyMedium">Paikka: {item.paikka}</Text>
+                                        <Text variant="bodyMedium">Kuvaus: {item.kuvaus}</Text>
                                     </Card.Content>
                                 </Card>
                             }
@@ -124,7 +124,6 @@ export default function Lista({ route }: RootStackScreenProps<'Lista'>) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -141,4 +140,17 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20
     },
+    textHead: {
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    text: {
+        fontSize: 18,
+    }, 
+    card:{
+        marginLeft:20,
+        marginRight:20,
+        marginTop: 10, 
+        width: '90%'
+    }
 });

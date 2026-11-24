@@ -51,6 +51,8 @@ export default function Kirjautuminen({ navigation }: RootStackScreenProps<'Kirj
             .catch(error => {
                 console.error('Virhe uloskirjautumisessa', error)
             })
+        setEmail('');
+        setPassword('');
     }
 
     return (
@@ -107,9 +109,6 @@ export default function Kirjautuminen({ navigation }: RootStackScreenProps<'Kirj
                                 Kirjaudu ulos</Button>
                         )
                     }
-
-
-
                     <StatusBar style="auto" />
                 </SafeAreaView>
             </SafeAreaProvider>
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     input: {
-        flex:1,
+        flex: 1,
         width: 300,
         marginTop: 20
     },

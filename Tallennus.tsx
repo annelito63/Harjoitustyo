@@ -58,30 +58,30 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
         <PaperProvider>
             <SafeAreaProvider>
                 <SafeAreaView>
-                    <View style={styles.input}>
-                        <TextInput
-                            style={{ width: '90%', marginBottom: 10 }}
+                    <View style={styles.container}>
+                        <TextInput 
+                        style={styles.input}
                             placeholder="Laji"
                             label="Laji"
                             value={havainto.laji}
                             onChangeText={text => setHavainto({ ...havainto, laji: text })}
                         />
                         <TextInput
-                            style={{ width: '90%', marginBottom: 10 }}
+                            style={styles.input}
                             placeholder="Paikka"
                             label="Paikka"
                             value={havainto.paikka}
                             onChangeText={text => setHavainto({ ...havainto, paikka: text })}
                         />
                         <TextInput
-                            style={{ width: '90%', marginBottom: 10 }}
+                            style={styles.input}
                             placeholder="Päivämäärä"
                             label="Päivämäärä"
                             value={havainto.pvm}
                             onChangeText={text => setHavainto({ ...havainto, pvm: text })}
                         />
                         <TextInput
-                            style={{ width: '90%', marginBottom: 10 }}
+                            style={styles.input}
                             placeholder="Kuvaus"
                             label="Kuvaus"
                             value={havainto.kuvaus}
@@ -126,7 +126,6 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -139,7 +138,10 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     input: {
-        flex: 1,
-        marginTop: 20
+        height: 40,
+        width: 300,
+        margin: 8,
+        borderWidth: 1,
+        padding: 10,
     },
 });

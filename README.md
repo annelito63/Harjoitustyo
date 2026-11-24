@@ -5,4 +5,4 @@
 - Kartassa käytetty React Native Maps, oletuksena Apple Maps
 - Navigaationa käytetty Stack navigation
 - Listaamiseen käytetty flatlist numeroinnilla ja card
-- Modal tekstikentän näyttämiseen
+- Modal tekstikentän näyttämiseen kartalla

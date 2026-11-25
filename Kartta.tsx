@@ -61,34 +61,8 @@ export default function Kartta({ navigation }: RootStackScreenProps<'Kartta'>) {
         latitudeDelta: latD,
         longitudeDelta: lonD,
     })
-    const [place, setPlace] = useState("");
 
     const [paikat, setPaikat] = useState<Paikka[]>([]);
-
-    const findPlace = () => {
-        fetch(`https://geocode.maps.co/search?q=${place}&api_key=6ab28ca9135d7862906985pbce48604`)
-            .then(response => {
-                if (!response.ok)
-                    throw new Error("Error in fetch:" + response.statusText);
-
-                return response.json()
-            })
-            .then(data => {
-                setLat(Number(data[0].lat));
-                setLon(Number(data[0].lon));
-                setRegion(
-
-                    {
-                        latitude: Number(data[0].lat),
-                        longitude: Number(data[0].lon),
-                        latitudeDelta: 0.0322,
-                        longitudeDelta: 0.0221,
-                    });
-
-            })
-            .catch(err => console.error(err));
-
-    };
 
     const tallennaSijainti = () => {
         if (location) {

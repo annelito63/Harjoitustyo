@@ -58,7 +58,7 @@ export default function Tallennus({ navigation }: RootStackScreenProps<'Tallennu
         <PaperProvider>
             <SafeAreaProvider>
                 <SafeAreaView>
-                    <View style={styles.container}>
+                    <View>
                         <TextInput 
                         style={styles.input}
                             placeholder="Laji"
@@ -143,5 +143,6 @@ const styles = StyleSheet.create({
         margin: 8,
         borderWidth: 1,
         padding: 10,
+        marginLeft: 30,
     },
 });

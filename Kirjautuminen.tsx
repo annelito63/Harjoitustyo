@@ -16,10 +16,6 @@ export default function Kirjautuminen({ navigation }: RootStackScreenProps<'Kirj
     const [password, setPassword] = useState('');
     const [user, setUser] = useState<string | null>(null);
 
-    const loginEmailPassword = async () => {
-        const loginEmail = email;
-        const loginPassword = password;
-    }
 
     const signUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
